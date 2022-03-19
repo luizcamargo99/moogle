@@ -27,13 +27,18 @@ function createScreenDetails(jsonResponse) {
     mainDiv.appendChild(createOverview(jsonResponse.plot_overview));
 
     details.appendChild(mainDiv);
-
-    document.getElementById('results').style.display = 'none';
 }
 
 function handleHeader () {
     document.getElementById('search-title').style.display = 'none';
     document.getElementById('buttons-search').style.display = 'none';
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('back-screen').style.display = 'block';
+    const details = document.getElementById('details');
+    for (child of details.children){
+        child.remove();
+    }
+    document.getElementById('details').style.display = 'block';
 }
 
 function createTitle (titleResponse) {
@@ -55,4 +60,12 @@ function createOverview (overviewResponse) {
     overview.innerHTML = overviewResponse;
     overview.style.margin = '2rem';
     return overview;
+}
+
+function backScreen() {
+    document.getElementById('search-title').style.display = 'block';
+    document.getElementById('buttons-search').style.display = 'block';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('details').style.display = 'none';
+    document.getElementById('back-screen').style.display = 'none';
 }

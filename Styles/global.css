@@ -107,3 +107,7 @@ a:hover {
 #logo.result-logo {
     font-size: 2rem;
 }
+
+#back-screen {
+    display: none;
+}

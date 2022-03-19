@@ -3,8 +3,11 @@ const apiEndPointSearch = `https://api.watchmode.com/v1/search/?apiKey=${API_KEY
 
 async function searchTitle () {
     const textField = document.getElementById('search-title').value;
-    const response = await fetch(apiEndPointSearch.replace('[TEXT_SEARCH]', textField));
-    await validateReturnSearch(response);
+
+    if (textField != "") {
+        const response = await fetch(apiEndPointSearch.replace('[TEXT_SEARCH]', textField));
+        await validateReturnSearch(response);
+    }
 }
 
 async function validateReturnSearch(response){
