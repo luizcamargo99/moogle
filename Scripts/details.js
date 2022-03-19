@@ -14,9 +14,8 @@ async function validateReturnDetails(response) {
 }
 
 function createScreenDetails(jsonResponse) {
-    handleHeader();
-    const details = document.getElementById('details');
-
+    handleElementsInDetails();
+    
     const mainDiv = document.createElement('div');
     mainDiv.classList.add('column', 'center');
 
@@ -26,10 +25,10 @@ function createScreenDetails(jsonResponse) {
 
     mainDiv.appendChild(createOverview(jsonResponse.plot_overview));
 
-    details.appendChild(mainDiv);
+    document.getElementById('details').appendChild(mainDiv);
 }
 
-function handleHeader () {
+function handleElementsInDetails () {
     document.getElementById('search-title').style.display = 'none';
     document.getElementById('buttons-search').style.display = 'none';
     document.getElementById('results').style.display = 'none';
