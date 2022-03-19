@@ -1,9 +1,19 @@
 const apiEndPointSearch = `https://api.watchmode.com/v1/search/?apiKey=${API_KEY}&search_field=name&search_value=[TEXT_SEARCH]`;
 
+function init () {
+    const search = document.getElementById('search-title');
+    search.addEventListener('keydown', function (e) {
+        if (e.code === 'Enter') { 
+            searchTitle();
+        }
+    });    
+}
 
 async function searchTitle () {
     const textField = document.getElementById('search-title').value;
-
+    const results = document.getElementById('results')
+    results.style.display = 'none';
+    results.children = removeChildrenElement(results.children);
     if (textField != "") {
         const response = await fetch(apiEndPointSearch.replace('[TEXT_SEARCH]', textField));
         await validateReturnSearch(response);
@@ -18,11 +28,9 @@ async function validateReturnSearch(response){
 }
 
 function createListResults (listResults) {
-    const results = document.getElementById('results');    
     for (let index = 0; index < listResults.length; index++) {
-        const result = listResults[index];
-        const card = createCardResult(result); 
-        results.appendChild(card);       
+        document.getElementById('results')
+        .appendChild(createCardResult(listResults[index]));       
     }
 
     handleElementsAfterFetch();
@@ -33,14 +41,13 @@ function createCardResult(result) {
     card.classList.add('column', 'results');
 
     const titleResult = document.createElement('a');
-    const yearResult = document.createElement('span');
-
     titleResult.innerHTML = `${result.name}`;
-    yearResult.innerHTML = `Year: ${result.year}`;
-    
     titleResult.addEventListener("click", function () {
         seeMoreTitle(result.id);
     });
+
+    const yearResult = document.createElement('span');
+    yearResult.innerHTML = `Year: ${result.year}`;     
 
     card.appendChild(titleResult);
     card.appendChild(yearResult);
@@ -48,7 +55,10 @@ function createCardResult(result) {
 }
 
 function handleElementsAfterFetch () {
-    document.getElementById('search-screen').classList.remove('column');
-    document.getElementById('search-screen').classList.add('row');
+    const searchScreen = document.getElementById('search-screen');
+    searchScreen.classList.remove('column');
+    searchScreen.classList.add('row');
     document.getElementById('logo').classList.add('result-logo');
+
+    document.getElementById('results').style.display = 'block';
 }

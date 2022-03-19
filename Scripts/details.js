@@ -15,11 +15,20 @@ async function validateReturnDetails(response) {
 
 function createScreenDetails(jsonResponse) {
     handleElementsInDetails();
-    
+
     const mainDiv = document.createElement('div');
     mainDiv.classList.add('column', 'center');
+    
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('row', 'center');
 
-    mainDiv.appendChild(createTitle( jsonResponse.original_title));
+    titleDiv.appendChild(createTitle(jsonResponse.original_title));
+
+    titleDiv.appendChild(createStarRating());
+
+    titleDiv.appendChild(createRating(jsonResponse.user_rating));
+
+    mainDiv.appendChild(titleDiv);
 
     mainDiv.appendChild(createBackdrop(jsonResponse.backdrop));
 
@@ -34,10 +43,8 @@ function handleElementsInDetails () {
     document.getElementById('results').style.display = 'none';
     document.getElementById('back-screen').style.display = 'block';
     const details = document.getElementById('details');
-    for (child of details.children){
-        child.remove();
-    }
-    document.getElementById('details').style.display = 'block';
+    details.children = removeChildrenElement(details.children);
+    details.style.display = 'block';
 }
 
 function createTitle (titleResponse) {
@@ -60,6 +67,20 @@ function createOverview (overviewResponse) {
     overview.style.margin = '2rem';
     return overview;
 }
+
+function createStarRating () {
+    const star = document.createElement('img');
+    star.src = './Images/star.png';
+    star.style.width = '2rem';
+    return star;
+}
+
+function createRating (ratingResponse) {
+    const rating = document.createElement('span');
+    rating.innerHTML = `${ratingResponse}/10`;
+    return rating;
+}
+
 
 function backScreen() {
     document.getElementById('search-title').style.display = 'block';

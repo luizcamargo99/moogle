@@ -96,11 +96,12 @@ a:hover {
 
 .results {
     gap: 1rem;
-    margin: 5%;
+    margin: 5% 10%;
 }
 
 
 #logo {
+    cursor: pointer;
     font-size: 5rem;
 }
 
