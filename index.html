@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./Scripts/key.js"></script>
+    <script src="./Scripts/search.js"></script>
+    <script src="./Scripts/details.js"></script>   
+    <link rel="stylesheet" href="./Styles/global.css">
+    <link rel="stylesheet" href="./Styles/responsive.css">
+    <title>Moogle</title>
+</head>
+<body>
+    <header>
+        
+    </header>
+    <main class="column">
+        <div class="column center" id="search-screen">
+            <h1 id="logo"><span class="blue">M</span><span class="red">o</span><span class="yellow">o</span><span class="blue">g</span><span class="green">l</span><span class="red">e</span></h1>
+            <input type="text" id="search-title">
+            <div class="row" id="buttons-search">
+                <button onclick="searchTitle()">Search Moogle</button>
+                <button>Random Moovie</button>
+            </div>
+        </div>   
+        <div id="results"></div> 
+
+        <div id="details"></div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --blue :#4285F4;
+    --red:#EA4335;
+    --yellow:#FBBC05;
+    --green:#34A853;
+    --title: #1a0dab;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+main{
+    margin-top: 4rem;
+}
+
+input {
+    padding: 0.8rem;
+    border-radius: 2rem;
+    width: 35rem;
+    border: 0.1rem solid #dddddd;
+}
+
+input:focus {
+    outline: none;
+    box-shadow:  0 0 .3rem rgb(180, 180, 180);
+}
+
+button {
+    background: #F8F9FA;
+    width: 8.5rem;
+    height: 2.3rem;
+    border: none;
+    border-radius: 0.3rem;
+    font-family: arial,sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    border: .1rem solid #e5e5e5;
+}
+
+a {
+    color: var(--title);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.blue {
+    color: var(--blue);
+}
+
+.red {
+    color: var(--red);
+}
+
+.yellow {
+    color: var(--yellow);
+}
+
+.green {
+    color: var(--green);
+}
+
+.row {
+    display: flex;    
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.results {
+    gap: 1rem;
+    margin: 5%;
+}
+
+
+#logo {
+    font-size: 5rem;
+}
+
+#logo.result-logo {
+    font-size: 2rem;
+}
