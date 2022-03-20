@@ -55,9 +55,12 @@ function createScreenDetails(jsonResponseDetails, jsonReponseCast) {
     mainDiv.appendChild(createCast(Array.from(jsonReponseCast).filter(x => x.type === 'Cast')
     .sort(function(a, b) {return b.episode_count - a.episode_count}).slice(0, 14)));
 
-    mainDiv.appendChild(createTitleSession('Trailer'));
+    if (jsonResponseDetails.trailer && jsonResponseDetails.trailer_thumbnail) {
 
-    mainDiv.appendChild(createTrailer(jsonResponseDetails.trailer, jsonResponseDetails.trailer_thumbnail));
+        mainDiv.appendChild(createTitleSession('Trailer'));
+
+        mainDiv.appendChild(createTrailer(jsonResponseDetails.trailer, jsonResponseDetails.trailer_thumbnail));
+    }
 
     document.getElementById('details').appendChild(mainDiv);
 }
