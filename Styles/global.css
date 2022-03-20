@@ -6,17 +6,29 @@
 }
 
 :root{
+    --text: #000;
+    --background: #fff;
+    --button: #F8F9FA;
     --blue :#4285F4;
     --red:#EA4335;
     --yellow:#FBBC05;
     --green:#34A853;
-    --title: #1a0dab;
+    --link: #1a0dab;
+}
+
+.dark-mode {
+    --text: #fff;
+    --background: #202124;
+    --button: #303134;
+    --link: #8ab4f8;
 }
 
 body{
     font-family: 'Roboto', sans-serif;
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: var(--background);
+    color: var(--text);
 }
 
 main{
@@ -24,6 +36,8 @@ main{
 }
 
 input {
+    background: var(--background);
+    color: var(--text);
     padding: 0.8rem;
     border-radius: 2rem;
     width: 35rem;
@@ -36,13 +50,14 @@ input:focus, input:hover {
 }
 
 button {
-    background: #F8F9FA;
+    background: var(--button);
     width: 8.5rem;
     height: 2.3rem;
     border: none;
     border-radius: 0.3rem;
     font-family: arial,sans-serif;
     cursor: pointer;
+    color: var(--text);
 }
 
 button:hover {
@@ -50,7 +65,7 @@ button:hover {
 }
 
 a {
-    color: var(--title);
+    color: var(--link);
     cursor: pointer;
     font-weight: 500;
     font-size: 1.2rem;

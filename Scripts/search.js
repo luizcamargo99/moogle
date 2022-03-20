@@ -1,14 +1,5 @@
 const apiEndPointSearch = `https://api.watchmode.com/v1/search/?apiKey=${API_KEY}&search_field=name&search_value=[TEXT_SEARCH]`;
 
-function init () {
-    const search = document.getElementById('search-title');
-    search.addEventListener('keydown', function (e) {
-        if (e.code === 'Enter') { 
-            searchTitle();
-        }
-    });    
-}
-
 async function searchTitle () {
     const textField = document.getElementById('search-title').value;
     const results = document.getElementById('results')
