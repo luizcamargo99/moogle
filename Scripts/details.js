@@ -42,14 +42,14 @@ function createScreenDetails(jsonResponseDetails, jsonReponseCast) {
 
     mainDiv.appendChild(createOverview(jsonResponseDetails.plot_overview));
 
-    const titleSession = document.createElement('h1');
-    titleSession.innerHTML = 'Top Cast';
-    mainDiv.appendChild(titleSession);
+    mainDiv.appendChild(createTitleSession('Top Cast'));
 
     mainDiv.appendChild(createCast(Array.from(jsonReponseCast).filter(x => x.type === 'Cast')
     .sort(function(a, b) {return b.episode_count - a.episode_count}).slice(0, 14)));
 
-    console.log(jsonReponseCast);
+    mainDiv.appendChild(createTitleSession('Trailer'));
+
+    mainDiv.appendChild(createTrailer(jsonResponseDetails.trailer, jsonResponseDetails.trailer_thumbnail));
 
     document.getElementById('details').appendChild(mainDiv);
 }
@@ -125,6 +125,25 @@ function createCast (castResponse) {
     }  
 
     return castDiv;    
+}
+
+function createTrailer (trailerUrl, trailerImage) {
+    const linkTrailer = document.createElement('a');
+    linkTrailer.href = trailerUrl;
+    linkTrailer.target = 'blank';
+
+    const trailer = document.createElement('img');
+    trailer.src = trailerImage;
+    trailer.style.cursor = 'pointer';
+
+    linkTrailer.appendChild(trailer)
+    return linkTrailer;
+}
+
+function createTitleSession (title) {
+    const titleSession = document.createElement('h1');
+    titleSession.innerHTML = title;
+    return titleSession;
 }
 
 function backScreen() {
