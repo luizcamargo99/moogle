@@ -92,6 +92,7 @@ a:hover {
 .center {
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .results {
@@ -107,6 +108,25 @@ a:hover {
 .gap-cast {
     gap: 0.5rem;
     align-items: center;
+}
+
+.trailer {
+    background: #2d2d2d;
+    margin-bottom: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.play {
+    background: #1a0dab;
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    background: url(https://image.winudf.com/v2/image1/aGQudmlkZW8ucGxheWVyX2ljb25fMTU0MTA1ODkxOF8wOTM/icon.png?w=&fakeurl=1);
+    background-size: contain;
 }
 
 #logo {

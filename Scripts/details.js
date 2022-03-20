@@ -28,13 +28,20 @@ function createScreenDetails(jsonResponseDetails, jsonReponseCast) {
     mainDiv.classList.add('column', 'center');
     
     const titleDiv = document.createElement('div');
-    titleDiv.classList.add('row', 'center');
+    titleDiv.classList.add('column', 'center');
 
-    titleDiv.appendChild(createTitle(jsonResponseDetails.original_title));
+    titleDiv.appendChild(createTitle(jsonResponseDetails.original_title, 
+        jsonResponseDetails.type === 'movie' ? `${jsonResponseDetails.year}`
+        : `${jsonResponseDetails.year} - ${jsonResponseDetails.end_year}` ));
+    
+    const ratingDiv = document.createElement('div');
+        ratingDiv.classList.add('row', 'center');
 
-    titleDiv.appendChild(createStarRating());
+    ratingDiv.appendChild(createStarRating());
 
-    titleDiv.appendChild(createRating(jsonResponseDetails.user_rating));
+    ratingDiv.appendChild(createRating(jsonResponseDetails.user_rating));
+    
+    titleDiv.appendChild(ratingDiv);
 
     mainDiv.appendChild(titleDiv);
 
@@ -64,9 +71,9 @@ function handleElementsInDetails () {
     details.style.display = 'block';
 }
 
-function createTitle (titleResponse) {
+function createTitle (titleResponse, year) {
     const title = document.createElement('span');
-    title.innerHTML = titleResponse;
+    title.innerHTML = `${titleResponse} (${year})` ;
     title.style.fontSize = '2rem';
     return title;
 }
@@ -94,7 +101,7 @@ function createStarRating () {
 
 function createRating (ratingResponse) {
     const rating = document.createElement('span');
-    rating.innerHTML = `${ratingResponse}/10`;
+    rating.innerHTML = `<b>${ratingResponse}</b>/10`;
     return rating;
 }
 
@@ -128,16 +135,27 @@ function createCast (castResponse) {
 }
 
 function createTrailer (trailerUrl, trailerImage) {
+    const divTrailer = document.createElement('div');
+    divTrailer.classList.add('trailer');
+    divTrailer.style.cursor = 'pointer';
+
+    const buttonPlay = document.createElement('div');
+    buttonPlay.classList.add('play');
+
+    divTrailer.appendChild(buttonPlay);
+
     const linkTrailer = document.createElement('a');
     linkTrailer.href = trailerUrl;
     linkTrailer.target = 'blank';
 
     const trailer = document.createElement('img');
     trailer.src = trailerImage;
+    trailer.style.opacity = .5;
     trailer.style.cursor = 'pointer';
 
-    linkTrailer.appendChild(trailer)
-    return linkTrailer;
+    divTrailer.appendChild(linkTrailer.appendChild(trailer));
+
+    return divTrailer;
 }
 
 function createTitleSession (title) {
