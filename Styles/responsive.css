@@ -2,4 +2,8 @@
     input {
         width: 20rem;
     }
+
+    .pic-cast {
+        width: 5rem;
+    }
 }

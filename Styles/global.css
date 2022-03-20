@@ -99,6 +99,15 @@ a:hover {
     margin: 5% 10%;
 }
 
+.pic-cast {
+    width: 10rem;
+    border-radius: 1rem;
+}
+
+.gap-cast {
+    gap: 0.5rem;
+    align-items: center;
+}
 
 #logo {
     cursor: pointer;

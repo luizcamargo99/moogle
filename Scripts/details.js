@@ -1,19 +1,27 @@
 const apiEndPointTitleDetails = `https://api.watchmode.com/v1/title/[TITLE_ID]/details/?apiKey=${API_KEY}&append_to_response=sources`;
-
+const apiEndPointTitleCast = `https://api.watchmode.com/v1/title/[TITLE_ID]/cast-crew/?apiKey=${API_KEY}`
 
 async function seeMoreTitle (idTitle) {
+    const jsonResponseDetails = await getDetails(idTitle);
+    const jsonReponseCast = await getCast(idTitle);
+    createScreenDetails(jsonResponseDetails, jsonReponseCast);
+}
+
+async function getDetails(idTitle) {
     const response = await fetch(apiEndPointTitleDetails.replace('[TITLE_ID]', idTitle));
-    await validateReturnDetails(response); 
+    return await validateReturnApi(response); 
 }
 
-async function validateReturnDetails(response) {
-    if (response.status === 200) {
-        const jsonResponse = await response.json();
-        createScreenDetails(jsonResponse);
-    }
+async function getCast(idTitle) {
+    const response = await fetch(apiEndPointTitleCast.replace('[TITLE_ID]', idTitle));
+    return await validateReturnApi(response);
 }
 
-function createScreenDetails(jsonResponse) {
+async function validateReturnApi(response) {
+    if (response.status === 200)  return await response.json();
+}
+
+function createScreenDetails(jsonResponseDetails, jsonReponseCast) {
     handleElementsInDetails();
 
     const mainDiv = document.createElement('div');
@@ -22,17 +30,26 @@ function createScreenDetails(jsonResponse) {
     const titleDiv = document.createElement('div');
     titleDiv.classList.add('row', 'center');
 
-    titleDiv.appendChild(createTitle(jsonResponse.original_title));
+    titleDiv.appendChild(createTitle(jsonResponseDetails.original_title));
 
     titleDiv.appendChild(createStarRating());
 
-    titleDiv.appendChild(createRating(jsonResponse.user_rating));
+    titleDiv.appendChild(createRating(jsonResponseDetails.user_rating));
 
     mainDiv.appendChild(titleDiv);
 
-    mainDiv.appendChild(createBackdrop(jsonResponse.backdrop));
+    mainDiv.appendChild(createBackdrop(jsonResponseDetails.backdrop));
 
-    mainDiv.appendChild(createOverview(jsonResponse.plot_overview));
+    mainDiv.appendChild(createOverview(jsonResponseDetails.plot_overview));
+
+    const titleSession = document.createElement('h1');
+    titleSession.innerHTML = 'Top Cast';
+    mainDiv.appendChild(titleSession);
+
+    mainDiv.appendChild(createCast(Array.from(jsonReponseCast).filter(x => x.type === 'Cast')
+    .sort(function(a, b) {return b.episode_count - a.episode_count}).slice(0, 14)));
+
+    console.log(jsonReponseCast);
 
     document.getElementById('details').appendChild(mainDiv);
 }
@@ -81,6 +98,34 @@ function createRating (ratingResponse) {
     return rating;
 }
 
+function createCast (castResponse) {
+    const castDiv = document.createElement('div');
+    castDiv.classList.add('row', 'center');
+
+    for (let index = 0; index < castResponse.length; index++) {
+        const castItem = castResponse[index];
+    
+        const personDiv = document.createElement('div');
+        personDiv.classList.add('column', 'gap-cast');
+
+        const picPerson = document.createElement('img');
+        picPerson.src = castItem.headshot_url;
+        picPerson.classList.add('pic-cast');
+        personDiv.appendChild(picPerson);
+
+        const name = document.createElement('h4');
+        name.innerHTML = castItem.full_name;
+        personDiv.appendChild(name);
+
+        const namePerson = document.createElement('span');
+        namePerson.innerHTML = castItem.role;
+        personDiv.appendChild(namePerson);
+
+        castDiv.appendChild(personDiv);        
+    }  
+
+    return castDiv;    
+}
 
 function backScreen() {
     document.getElementById('search-title').style.display = 'block';
