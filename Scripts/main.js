@@ -20,6 +20,10 @@ function addEventEnterSearchInput () {
     });    
 }
 
+function myWebsite() {
+    window.open('http://luizcamargo.dev', '_blank');
+}
+
 function removeChildrenElement (children) {
     for (child of children){
         child.remove();

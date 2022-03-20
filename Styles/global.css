@@ -42,9 +42,19 @@ input {
     border-radius: 2rem;
     width: 35rem;
     border: 0.1rem solid #dddddd;
-}
+}    
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-text-fill-color: var(--text);
+    box-shadow: 0 0 0px 1000px var(--background) inset;
+    -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
+}
 input:focus, input:hover {
+    background: var(--background);
     outline: none;
     box-shadow:  0 0 .3rem rgb(180, 180, 180);
 }
