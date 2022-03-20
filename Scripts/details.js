@@ -86,6 +86,7 @@ function createBackdrop (backdropResponse) {
     const backdrop = document.createElement('img');
     backdrop.src = backdropResponse;
     backdrop.style.width = '50%';
+    backdrop.style.borderRadius = '2rem';
     return backdrop;
 }
 
