@@ -32,7 +32,8 @@ function createScreenDetails(jsonResponseDetails, jsonReponseCast) {
 
     titleDiv.appendChild(createTitle(jsonResponseDetails.original_title, 
         jsonResponseDetails.type === 'movie' ? `${jsonResponseDetails.year}`
-        : `${jsonResponseDetails.year} - ${jsonResponseDetails.end_year}` ));
+        : `${jsonResponseDetails.year} - 
+        ${jsonResponseDetails.end_year == null ? 'present' : jsonResponseDetails.end_year}` ));
     
     const ratingDiv = document.createElement('div');
         ratingDiv.classList.add('row', 'center');
@@ -153,7 +154,9 @@ function createTrailer (trailerUrl, trailerImage) {
     trailer.style.opacity = .5;
     trailer.style.cursor = 'pointer';
 
-    divTrailer.appendChild(linkTrailer.appendChild(trailer));
+    linkTrailer.appendChild(trailer)
+
+    divTrailer.appendChild(linkTrailer);
 
     return divTrailer;
 }

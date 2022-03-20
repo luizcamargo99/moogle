@@ -30,7 +30,7 @@ input {
     border: 0.1rem solid #dddddd;
 }
 
-input:focus {
+input:focus, input:hover {
     outline: none;
     box-shadow:  0 0 .3rem rgb(180, 180, 180);
 }
@@ -97,7 +97,7 @@ a:hover {
 
 .results {
     gap: 1rem;
-    margin: 5% 10%;
+    margin: 5% 12%;
 }
 
 .pic-cast {
