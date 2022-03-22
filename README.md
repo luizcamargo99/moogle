@@ -22,6 +22,11 @@ Using a Google-inspired design. Bringing something familiar with a hint of origi
 
 ## 💻 Interface Mockup 
 
+![1](https://user-images.githubusercontent.com/59785233/159520721-a432b5ea-1f3f-4d3c-8569-a396c6d027e5.jpg)
+
+![2](https://user-images.githubusercontent.com/59785233/159520759-b000c4c6-c37c-4ed6-a41e-a2a9487169dc.jpg)
+
+![3](https://user-images.githubusercontent.com/59785233/159520763-dcd80e21-4b62-4130-8f68-8adb8da7f56f.jpg)
 
 
 ## 🤔 How do I access the project?
